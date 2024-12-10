@@ -16,6 +16,9 @@ function Card(props) {
     return (
         <div onClick={handleClick} className="w-[49%] h-64 bg-[#F4EEFF] mt-2 rounded-lg relative shadow">
             <img src={props.poster} alt="" className='object-cover rounded-lg h-full w-full' />
+            <div className="bg-[#F4EEFF] w-12 h-6 top-1 absolute left-1 rounded shadow flex justify-center items-center opacity-85">
+                <span className="text-sm mt-[2px] ml-[2px]">{props.year}</span>
+            </div>
             <div className="bg-[#F4EEFF] w-12 h-6 top-1 absolute right-1 rounded shadow flex justify-center items-center opacity-85">
                 <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="#ffbb00"><path d="m233-120 65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Z"/></svg>
                 <span className="text-sm mt-[2px] ml-[2px]">{props.rating}</span>

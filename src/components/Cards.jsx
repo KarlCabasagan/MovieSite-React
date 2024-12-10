@@ -6,7 +6,7 @@ function Cards({ shows, topShows }) {
             <div className="h-1/3"></div>
             <div className="h-2/3 w-full auto flex justify-between flex-wrap overflow-y-auto no-scrollbar">
                 {shows.map((show, index) => (
-                    <Card key={show.id} id={show.id} title={show.title} rating={show.rating / 10} poster={show.imageSet.verticalPoster.w720} show={show} index={index} />
+                    <Card key={show.id} id={show.id} title={show.title} year={show.releaseYear ? show.releaseYear : show.firstAirYear} rating={show.rating / 10} poster={show.imageSet.verticalPoster.w720} show={show} index={index} />
                 ))}
                 <div className="h-2 w-full"></div>
             </div>
