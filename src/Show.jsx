@@ -40,44 +40,44 @@ function Show({ showImages, index }) {
                 ))}
             </div>
             <div className="w-[95%] overflow-auto">
-                <h2 className="text-3xl font-bold text-[#DCD6F7] mb-2">{selectedShow.title}</h2>
+                <h2 className="text-3xl font-bold text-[#DCD6F7] mb-2">{selectedShow? selectedShow.title: ''}</h2>
                 <div className="flex items-center mb-4">
                     <div className="flex items-center mr-8">
                         <svg className="mr-1" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#DCD6F7"><path d="m233-120 65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Z"/></svg>
-                        <span className="text-[#DCD6F7] mt-[3px]">{selectedShow.rating / 10}</span>
+                        <span className="text-[#DCD6F7] mt-[3px]">{selectedShow ? selectedShow.rating / 10 : ''}</span>
                     </div>
                     <div className="flex items-center  mr-8">
-                        <span className="text-[#DCD6F7] mt-[3px]">{selectedShow.showType == "movie" ? "Movie" : "Series"}</span>
+                        <span className="text-[#DCD6F7] mt-[3px]">{selectedShow ? (selectedShow.showType == "movie" ? "Movie" : "Series") : ''}</span>
                     </div>
                     <div className="flex items-center">
-                        <span className="text-[#DCD6F7] mt-[3px]">{selectedShow.runtime ? selectedShow.runtime + " min" : ""}</span>
+                        <span className="text-[#DCD6F7] mt-[3px]">{selectedShow ? (selectedShow.runtime ? selectedShow.runtime + " min" : "") : ''}</span>
                     </div>
                 </div>
                 <div className="w-full mb-4">
-                    <p className="text-justify text-[#DCD6F7]">{selectedShow.overview ? selectedShow.overview : "This show has no overview."}</p>
+                    <p className="text-justify text-[#DCD6F7]">{selectedShow ? (selectedShow.overview ? selectedShow.overview : "This show has no overview.") : ''}</p>
                 </div>
                 <div className="flex mb-4">
                     <span className="text-[#DCD6F7] mr-11">Genre: </span>
-                    {selectedShow.genres.map((genre, index) => (
+                    {selectedShow ? (selectedShow.genres.map((genre, index) => (
                        (index === Object.keys(selectedShow.genres).length -1) ? <span key={genre.id} className="mr-1 mt-[1px] text-[#F4EEFF]">{genre.name}</span> : <span key={genre.id} className="mr-1 mt-[1px] text-[#F4EEFF]">{genre.name + ", "}</span>
-                    ))}
+                    ))) : ''}
                 </div>
                 <div className="flex mb-4">
                     <span className="text-[#DCD6F7] mr-5">Released: </span>
-                    <span className="mr-1 mt-[1px] text-[#F4EEFF]">{selectedShow.releaseYear || selectedShow.firstAirYear}</span>
+                    <span className="mr-1 mt-[1px] text-[#F4EEFF]">{selectedShow ? (selectedShow.releaseYear || selectedShow.firstAirYear) : ''}</span>
                 </div>
                 <div className="flex mb-4">
                     <span className="text-[#DCD6F7] mr-5">Directors: </span>
-                    {selectedShow.directors?.map((director, index) => (
+                    {selectedShow ? (selectedShow.directors?.map((director, index) => (
                        (index === Object.keys(selectedShow.directors).length -1) ? <span key={index} className="mr-1 mt-[1px] text-[#F4EEFF]">{director}</span> : <span key={index} className="mr-1 mt-[1px] text-[#F4EEFF]">{director + ", "}</span>
-                    ))}
+                    ))) : ''}
                 </div>
                 <div className="flex mb-4">
                     <span className="text-[#DCD6F7] mr-11">Casts: </span>
                     <div>
-                        {selectedShow.cast?.map((cast, index) => (
+                        {selectedShow ? (selectedShow.cast?.map((cast, index) => (
                         (index === Object.keys(selectedShow.cast).length -1) ? <span key={index} className="mr-1 mt-[1px] text-[#F4EEFF]">{cast}</span> : <span key={index} className="mr-1 mt-[1px] text-[#F4EEFF]">{cast + ", "}</span>
-                        ))}
+                        ))) : ''}
                     </div>
                 </div>
             </div>

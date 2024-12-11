@@ -9,21 +9,17 @@ const client = new streamingAvailability.Client(new streamingAvailability.Config
 	apiKey: RAPID_API_KEY
 }));
 
-const topShows = await client.showsApi.getTopShows({
-	country: "ph",
-	service: "netflix",
-});
-
 export const ShowContext = createContext(false)
 export const SelectedShowContext = createContext(null)
 export const MovieIndexContext = createContext(0)
 export const SearchInputFieldContext = createContext('')
 
 function App() {
+  const [topShows, setTopShows] = useState();
 
-  const [showOnList, setShowOnList] = useState(topShows)
+  const [showOnList, setShowOnList] = useState([])
   const [showModal, setShowModal] = useState(false)
-  const [selectedShow, setSelectedShow] = useState(topShows[1])
+  const [selectedShow, setSelectedShow] = useState()
   const [movieIndex, setMovieIndex] = useState(0)
   const [searchInputField, setSearchInputField] = useState("")
 
@@ -31,19 +27,32 @@ function App() {
 
   useEffect(() => {
     const fetchShows = async () => {
-      const data = await client.showsApi.searchShowsByTitle({
-        country: "ph",
-        title: searchInputField,
-      });
-      setShowOnList(s => data)
-    }
+      try {
+        const data = await client.showsApi.searchShowsByTitle({
+          country: "ph",
+          title: searchInputField,
+        });
+        setShowOnList(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-    const fetchTopShows = () => {
-      setShowOnList(s => topShows)
-    }
-    
-    searchInputField ? fetchShows() : fetchTopShows()
-  }, [searchInputField])
+    const fetchTopShows = async () => {
+      try {
+        const data = await client.showsApi.getTopShows({
+          country: "ph",
+          service: "netflix",
+        });
+        setTopShows(data)
+        setShowOnList(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    searchInputField ? fetchShows() : fetchTopShows();
+  }, [searchInputField]);
 
   return (
     <div className='w-screen h-screen flex flex-col items-center'>
