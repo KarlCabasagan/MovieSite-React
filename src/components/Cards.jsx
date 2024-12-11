@@ -8,6 +8,12 @@ function Cards({ shows, topShows }) {
                 {shows.map((show, index) => (
                     <Card key={show.id} id={show.id} title={show.title} year={show.releaseYear ? show.releaseYear : show.firstAirYear} rating={show.rating / 10} poster={show.imageSet.verticalPoster.w720} show={show} index={index} />
                 ))}
+                
+                {shows ?
+                (<div className="w-full flex justify-center items-center">
+                    <h2 className="text-2xl font-bold text-gray-700">Something went wrong.</h2>
+                </div>) 
+                : ""}
                 <div className="h-2 w-full"></div>
             </div>
         </div>

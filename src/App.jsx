@@ -4,7 +4,7 @@ import Cards from './components/Cards.jsx'
 import Show from './Show.jsx'
 import * as streamingAvailability from "streaming-availability";
 
-const RAPID_API_KEY = "3b83fab814msh5ec971d4deb5626p13e72ejsn614a6e4f0387";
+const RAPID_API_KEY = "c4ca7459c2msh36cb11bef02f6bep184a20jsn6dd862acfb89";
 const client = new streamingAvailability.Client(new streamingAvailability.Configuration({
 	apiKey: RAPID_API_KEY
 }));
