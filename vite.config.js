@@ -13,7 +13,7 @@ export default defineConfig({
         icons: [
           {
             src: "/flowbite-logo.png",
-            sizes: "1152x1152",
+            sizes: "512x512",
             type: "image/png",
             purpose: "any maskable"
           }
