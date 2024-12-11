@@ -13,7 +13,7 @@ export default defineConfig({
         icons: [
           {
             src: "/flowbite-logo.png",
-            sizes: "512x512",
+            sizes: "1152x1152",
             type: "image/png",
             purpose: "any maskable"
           }
@@ -35,8 +35,8 @@ export default defineConfig({
       }
     })
   ],
-  build: {
-    outDir: '../wwwroot/',
-    emptyOutDir: true,
-  },
+  // build: {
+  //   outDir: '../wwwroot/',
+  //   emptyOutDir: true,
+  // },
 })
