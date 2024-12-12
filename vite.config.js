@@ -19,6 +19,7 @@ export default defineConfig({
           }
         ]
       },
+      registerType: 'autoUpdate',
       workbox: {
         runtimeCaching: [{
           urlPattern: ({ url }) => {
