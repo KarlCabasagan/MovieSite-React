@@ -8,11 +8,14 @@ export default defineConfig({
     react(),
     VitePWA({
       manifest: {
+        name: 'MovieSite',
+        short_name: 'MovieSite',
+        description: 'Shows information about movies',
         background_color: "#dcd6f7",
         theme_color: "#424874",
         icons: [
           {
-            src: "/flowbite-logo.png",
+            src: "/moviesite-logo.png",
             sizes: "512x512",
             type: "image/png",
             purpose: "any maskable"
