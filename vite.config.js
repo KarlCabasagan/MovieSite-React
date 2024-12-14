@@ -20,20 +20,6 @@ export default defineConfig({
         ]
       },
       registerType: 'autoUpdate',
-      workbox: {
-        runtimeCaching: [{
-          urlPattern: ({ url }) => {
-            return url.href === 'https://streaming-availability.p.rapidapi.com/shows/top';
-          },
-          handler: "CacheFirst",
-          options: {
-            cacheName: "shows-cache",
-            cacheableResponse: {
-              statuses: [0, 200]
-            }
-          }
-        }]
-      }
     })
   ],
   // build: {
