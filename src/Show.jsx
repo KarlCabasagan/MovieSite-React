@@ -67,10 +67,12 @@ function Show({ showImages, index }) {
                     <span className="mr-1 mt-[1px] text-[#F4EEFF]">{selectedShow ? (selectedShow.releaseYear || selectedShow.firstAirYear) : ''}</span>
                 </div>
                 <div className="flex mb-4">
-                    <span className="text-[#DCD6F7] mr-5">Directors: </span>
-                    {selectedShow?.directors.map((director, index) => (
+                    <span className="text-[#DCD6F7] mr-5">{selectedShow?.directors ? 'Directors:' : selectedShow?.creators ? 'Creators:' : 'Directors:'} </span>
+                    {selectedShow?.directors?.map((director, index) => (
                        (index === Object.keys(selectedShow.directors).length -1) ? <span key={index} className="mr-1 mt-[1px] text-[#F4EEFF]">{director}</span> : <span key={index} className="mr-1 mt-[1px] text-[#F4EEFF]">{director + ", "}</span>
-                    )) ?? ''}
+                    )) ?? selectedShow?.creators?.map((creator, index) => (
+                        (index === Object.keys(selectedShow.creators).length -1) ? <span key={index} className="mr-1 mt-[1px] text-[#F4EEFF]">{creator}</span> : <span key={index} className="mr-1 mt-[1px] text-[#F4EEFF]">{creator + ", "}</span>
+                     ))}
                 </div>
                 <div className="flex mb-4">
                     <span className="text-[#DCD6F7] mr-11">Casts: </span>
