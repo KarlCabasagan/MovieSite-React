@@ -35,9 +35,9 @@ function Show({ showImages, index }) {
                 <div onClick={() => {setShowModal(s => false)}} className="p-1 bg-[#424874] absolute shadow-lg rounded-full top-2 left-2 opacity-75" >
                     <svg xmlns="http://www.w3.org/2000/svg" height="52px" viewBox="0 -960 960 960" width="52px" fill="#F4EEFF"><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg>
                 </div>
-                {showImages.map((showImage, index) => (
+                {showImages?.map((showImage, index) => (
                     <img key={index} src={showImage} alt="" className={((index == movieIndex) ? "block" : "hidden" ) + " h-full max-h-full object-cover"} />
-                ))}
+                )) ?? ''}
             </div>
             <div className="w-[95%] overflow-auto">
                 <h2 className="text-3xl font-bold text-[#DCD6F7] mb-2">{selectedShow? selectedShow.title: ''}</h2>
@@ -58,9 +58,9 @@ function Show({ showImages, index }) {
                 </div>
                 <div className="flex mb-4">
                     <span className="text-[#DCD6F7] mr-11">Genre: </span>
-                    {selectedShow ? (selectedShow.genres.map((genre, index) => (
+                    {selectedShow?.genres.map((genre, index) => (
                        (index === Object.keys(selectedShow.genres).length -1) ? <span key={genre.id} className="mr-1 mt-[1px] text-[#F4EEFF]">{genre.name}</span> : <span key={genre.id} className="mr-1 mt-[1px] text-[#F4EEFF]">{genre.name + ", "}</span>
-                    ))) : ''}
+                    )) ?? ''}
                 </div>
                 <div className="flex mb-4">
                     <span className="text-[#DCD6F7] mr-5">Released: </span>
@@ -68,16 +68,16 @@ function Show({ showImages, index }) {
                 </div>
                 <div className="flex mb-4">
                     <span className="text-[#DCD6F7] mr-5">Directors: </span>
-                    {selectedShow ? (selectedShow.directors?.map((director, index) => (
+                    {selectedShow?.directors.map((director, index) => (
                        (index === Object.keys(selectedShow.directors).length -1) ? <span key={index} className="mr-1 mt-[1px] text-[#F4EEFF]">{director}</span> : <span key={index} className="mr-1 mt-[1px] text-[#F4EEFF]">{director + ", "}</span>
-                    ))) : ''}
+                    )) ?? ''}
                 </div>
                 <div className="flex mb-4">
                     <span className="text-[#DCD6F7] mr-11">Casts: </span>
                     <div>
-                        {selectedShow ? (selectedShow.cast?.map((cast, index) => (
+                        {selectedShow?.cast.map((cast, index) => (
                         (index === Object.keys(selectedShow.cast).length -1) ? <span key={index} className="mr-1 mt-[1px] text-[#F4EEFF]">{cast}</span> : <span key={index} className="mr-1 mt-[1px] text-[#F4EEFF]">{cast + ", "}</span>
-                        ))) : ''}
+                        )) ?? ''}
                     </div>
                 </div>
             </div>
