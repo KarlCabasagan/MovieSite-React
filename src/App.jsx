@@ -15,29 +15,36 @@ export const MovieIndexContext = createContext(0)
 export const SearchInputFieldContext = createContext('')
 
 function App() {
-  const [topShows, setTopShows] = useState()
+  const [topShows, setTopShows] = useState(JSON.parse(localStorage.getItem('top-shows')))
 
-  const [showOnList, setShowOnList] = useState([])
+  const [showOnList, setShowOnList] = useState(topShows)
   const [showModal, setShowModal] = useState(false)
   const [selectedShow, setSelectedShow] = useState()
   const [movieIndex, setMovieIndex] = useState(0)
   const [searchInputField, setSearchInputField] = useState("")
 
-  const showImages = showOnList.map(show => show.imageSet.horizontalPoster.w1440)
+  const showImages = showOnList?.map(show => show.imageSet.horizontalPoster.w1440)
 
   useEffect(() => {
-    const fetchShows = async () => {
-      try {
-        const data = await client.showsApi.searchShowsByTitle({
-          country: "ph",
-          title: searchInputField,
-        })
-        setShowOnList(data)
-      } catch (error) {
-        console.error(error)
+    if(searchInputField) {
+      const fetchShows = async () => {
+        try {
+          const data = await client.showsApi.searchShowsByTitle({
+            country: "ph",
+            title: searchInputField,
+          })
+          setShowOnList(data)
+        } catch (error) {
+          console.error(error)
+        }
       }
+      fetchShows()
+    } else {
+      setShowOnList(topShows)
     }
+  }, [searchInputField])
 
+  useEffect(() => {
     const fetchTopShows = async () => {
       try {
         const data = await client.showsApi.getTopShows({
@@ -48,8 +55,8 @@ function App() {
         localStorage.removeItem('top-shows')
         localStorage.setItem('top-shows', JSON.stringify(data))
 
-        setTopShows(data)
-        setShowOnList(data)
+        // setTopShows(data)
+        topShows ?? setShowOnList(data)
       } catch (error) {
         const cachedData = localStorage.getItem('top-shows')
 
@@ -67,8 +74,8 @@ function App() {
       }
     }
 
-    searchInputField ? fetchShows() : fetchTopShows()
-  }, [searchInputField])
+    fetchTopShows()
+  }, [])
 
   return (
     <div className='w-screen h-screen flex flex-col items-center'>
