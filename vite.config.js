@@ -23,6 +23,9 @@ export default defineConfig({
         ]
       },
       registerType: 'autoUpdate',
+      workbox: {
+        cleanupOutdatedCaches: true,
+      }
     })
   ],
   // build: {
